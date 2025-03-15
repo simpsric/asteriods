@@ -31,6 +31,12 @@ def main():
         for drawable in drawables:
             drawable.draw(screen)
             
+        for asteroid in asteroids:
+            if player1.check_collision(asteroid):
+                print("Game Over!")
+                pygame.quit()
+                return
+            
         pygame.display.flip()
         gameClock.tick(FPS)
         dt = gameClock.get_time() / 1000
