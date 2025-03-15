@@ -1,6 +1,7 @@
 from circleshape import CircleShape
 import pygame
 from constants import *
+from pellets import Pellet
 
 class Player(CircleShape):
     containers = None
@@ -28,6 +29,9 @@ class Player(CircleShape):
             self.rotation -= PLAYER_TURN_SPEED * dt
         elif keys[pygame.K_e]:
             self.rotation += PLAYER_TURN_SPEED * dt
+            
+        if keys[pygame.K_SPACE]:
+            self.shoot()
         
         if keys[pygame.K_COMMA]:
             self.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SPEED
@@ -40,3 +44,6 @@ class Player(CircleShape):
         
     def move(self, dt):
         self.position += self.velocity * dt * PLAYER_SPEED
+        
+    def shoot(self):
+        return Pellet(self.position.x, self.position.y, self.rotation)

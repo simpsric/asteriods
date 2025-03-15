@@ -3,6 +3,7 @@ from player import Player
 from asteroid import Asteroid
 from asteroidField import AsteroidField
 from constants import *
+from pellets import Pellet
 
 def main():
     pygame.init()
@@ -11,10 +12,12 @@ def main():
     updateables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
+    pellets = pygame.sprite.Group()
     
     Player.containers = (updateables, drawables)
     Asteroid.containers = (asteroids, updateables, drawables)
     AsteroidField.containers = (updateables,)
+    Pellet.containers = (pellets, updateables, drawables)
     
     dt = 0
     player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
