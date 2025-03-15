@@ -15,6 +15,7 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 return
+        player1.update(dt)
         player1.draw(screen)
         pygame.display.flip()
         gameClock.tick(FPS)
