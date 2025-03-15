@@ -9,6 +9,7 @@ class Player(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
         self.rotation = 0
+        self.pellet_timer = 0
         
     # in the player class
     def triangle(self):
@@ -24,13 +25,15 @@ class Player(CircleShape):
         
     def update(self, dt):
         keys = pygame.key.get_pressed()
+        self.pellet_timer -= dt
         
         if keys[pygame.K_a]:
             self.rotation -= PLAYER_TURN_SPEED * dt
         elif keys[pygame.K_e]:
             self.rotation += PLAYER_TURN_SPEED * dt
             
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] and self.pellet_timer <= 0:
+            self.pellet_timer = PLAYER_PELLET_COOLDOWN
             self.shoot()
         
         if keys[pygame.K_COMMA]:

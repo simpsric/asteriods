@@ -35,6 +35,10 @@ def main():
             drawable.draw(screen)
             
         for asteroid in asteroids:
+            for pellet in pellets:
+                if asteroid.check_collision(pellet):
+                    asteroid.kill()
+                    pellet.kill()
             if player1.check_collision(asteroid):
                 print("Game Over!")
                 pygame.quit()
